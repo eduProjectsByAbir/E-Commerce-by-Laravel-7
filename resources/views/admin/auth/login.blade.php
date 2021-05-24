@@ -1,6 +1,6 @@
 @extends('admin.admin_layout')
 
-@section('login_content')
+@section('content')
 <div class="d-flex align-items-center justify-content-center bg-sl-primary ht-100v">
 
     <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white">
@@ -28,7 +28,7 @@
         <a href="{{ route('password.request') }}" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
       </div><!-- form-group -->
       <button type="submit" class="btn btn-info btn-block">Sign In</button>
-
+      </form>
     </div><!-- login-wrapper -->
   </div><!-- d-flex -->
 @endsection
