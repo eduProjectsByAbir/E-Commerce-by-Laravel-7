@@ -34,7 +34,12 @@
     <link href="{{ asset('backend/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/lib/Ionicons/css/ionicons.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/lib/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend') }}/lib/highlightjs/github.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+    <link href="{{ asset('backend') }}/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="{{ asset('backend') }}/lib/select2/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
     <!-- Starlight CSS -->
@@ -63,10 +68,16 @@
             <span class="menu-item-label">Dashboard</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="widgets.html" class="sl-menu-link">
+        <a href="{{ route('index') }}" target="_blank" class="sl-menu-link">
+            <div class="sl-menu-item">
+              <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+              <span class="menu-item-label">Visit Site</span>
+            </div><!-- menu-item -->
+          </a><!-- sl-menu-link -->
+        <a href="{{ Route('admin.category') }}" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-            <span class="menu-item-label">Cards &amp; Widgets</span>
+            <span class="menu-item-label">Category</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <a href="#" class="sl-menu-link">
@@ -377,10 +388,93 @@
     <script src="{{ asset('backend')}}/lib/Flot/jquery.flot.pie.js"></script>
     <script src="{{ asset('backend')}}/lib/Flot/jquery.flot.resize.js"></script>
     <script src="{{ asset('backend')}}/lib/flot-spline/jquery.flot.spline.js"></script>
+    <script src="{{ asset('backend')}}/lib/highlightjs/highlight.pack.js"></script>
+    <script src="{{ asset('backend')}}/lib/datatables/jquery.dataTables.js"></script>
+    <script src="{{ asset('backend')}}/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="{{ asset('backend')}}/lib/select2/js/select2.min.js"></script>
 
     <script src="{{ asset('backend')}}/js/starlight.js"></script>
     <script src="{{ asset('backend')}}/js/ResizeSensor.js"></script>
     <script src="{{ asset('backend')}}/js/dashboard.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        $(function(){
+          $('#datatable1').DataTable({
+              responsive: true,
+              language: {
+                  searchPlaceholder: 'Search...',
+                  sSearch: '',
+                  lengthMenu: '_MENU_ items/page',
+                }
+            });
 
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+      </script>
+      <script>
+        @if(Session::has('success'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "newestOnTop": true,
+            "progressBar" : true
+        }
+                toastr.success("{{ session('success') }}");
+        @endif
+
+        @if(Session::has('message'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "newestOnTop": true,
+            "progressBar" : true
+        }
+                toastr.info("{{ session('message') }}");
+        @endif
+
+        @if(Session::has('error'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "newestOnTop": true,
+            "progressBar" : true
+        }
+                toastr.error("{{ session('error') }}");
+        @endif
+
+        @if(Session::has('info'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "newestOnTop": true,
+            "progressBar" : true
+        }
+                toastr.info("{{ session('info') }}");
+        @endif
+
+        @if(Session::has('warning'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "newestOnTop": true,
+            "progressBar" : true
+        }
+                toastr.warning("{{ session('warning') }}");
+        @endif
+
+        @if(count($errors) > 0)
+        toastr.options =
+        {
+            "closeButton" : true,
+            "newestOnTop": true,
+            "progressBar" : true
+        }
+            @foreach($errors->all() as $error)
+                toastr.error("{{ $error }}");
+            @endforeach
+    @endif
+      </script>
   </body>
 </html>
