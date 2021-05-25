@@ -39,7 +39,7 @@
     <link href="{{ asset('backend') }}/lib/datatables/jquery.dataTables.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/lib/select2/css/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    href="{{ asset('backend')}}/lib/toastr/toastr.min.css">
 
 
     <!-- Starlight CSS -->
@@ -379,6 +379,22 @@
     <script src="{{ asset('backend/lib/popper.js/popper.js') }}"></script>
     <script src="{{ asset('backend/lib/bootstrap/bootstrap.js') }}"></script>
     <script src="{{ asset('backend')}}/lib/jquery-ui/jquery-ui.js"></script>
+    <script>
+        $(function(){
+          $('#datatable1').DataTable({
+              responsive: true,
+              language: {
+                  searchPlaceholder: 'Search...',
+                  sSearch: '',
+                  lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+      </script>
     <script src="{{ asset('backend')}}/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
     <script src="{{ asset('backend')}}/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
     <script src="{{ asset('backend')}}/lib/d3/d3.js"></script>
@@ -396,23 +412,8 @@
     <script src="{{ asset('backend')}}/js/starlight.js"></script>
     <script src="{{ asset('backend')}}/js/ResizeSensor.js"></script>
     <script src="{{ asset('backend')}}/js/dashboard.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script>
-        $(function(){
-          $('#datatable1').DataTable({
-              responsive: true,
-              language: {
-                  searchPlaceholder: 'Search...',
-                  sSearch: '',
-                  lengthMenu: '_MENU_ items/page',
-                }
-            });
+    <script src="{{ asset('backend')}}/lib/toastr/toastr.min.js"></script>
 
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-      </script>
       <script>
         @if(Session::has('success'))
         toastr.options =

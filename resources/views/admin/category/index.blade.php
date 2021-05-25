@@ -10,16 +10,41 @@
     <div class="sl-pagebody">
         <div class="row row-sm">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        Categories
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead></thead>
-                        </table>
-                    </div>
-                </div>
+                <div class="card pd-20 pd-sm-40">
+                    <h6 class="card-body-title">All Category</h6>
+
+                    <div class="table-wrapper">
+                      <table id="datatable1" class="table display responsive nowrap table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th class="wd-5p">ID</th>
+                            <th class="wd-15p">Category Name</th>
+                            <th class="wd-15p">Category Status</th>
+                            <th class="wd-20p">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($categories as $category)
+                            <tr>
+                                <td>{{ $category->id }}</td>
+                                <td>{{ $category->category_name }}</td>
+                                <td>
+                                    @if ($category->status == 0)
+                                    <span class="badge badge-danger">Pending</span>
+                                    @else
+                                    <span class="badge badge-success">Active</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="" class="btn-btn-sm btn-success p-1">Edit</a>
+                                    <a href="" class="btn-btn-sm btn-danger p-1">Delete</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+                    </div><!-- table-wrapper -->
+                  </div><!-- card -->
             </div>
             <div class="col-md-4">
                 <div class="card">
