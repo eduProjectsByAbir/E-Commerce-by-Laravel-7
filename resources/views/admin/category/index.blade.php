@@ -12,7 +12,7 @@
             <div class="col-md-8">
                 <div class="card pd-20 pd-sm-40">
                     <h6 class="card-body-title">All Category</h6>
-
+                    <br>
                     <div class="table-wrapper">
                       <table id="datatable1" class="table display responsive nowrap table-striped table-bordered">
                         <thead>
@@ -36,7 +36,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="" class="btn-btn-sm btn-success p-1">Edit</a>
+                                    <a href="{{ route('admin.edit.category', $category->id) }}" class="btn-btn-sm btn-success p-1">Edit</a>
                                     <a href="" class="btn-btn-sm btn-danger p-1">Delete</a>
                                 </td>
                             </tr>

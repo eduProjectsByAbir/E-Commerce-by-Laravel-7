@@ -25,4 +25,19 @@ class CategoryController extends Controller
         ]);
         return redirect()->back()->with('success', 'Category Successfully Added!');
     }
+
+    public function edit($id){
+        $category = Category::find($id);
+        return view('admin.category.edit', compact('category'));
+    }
+
+    public function update(Request $request, $id){
+        $category = Category::find($id);
+        $category->category_name = $request->category_name;
+        $category->save();
+
+        $categories = Category::latest()->get();
+        return view('admin.category.index', compact('categories'))->with('success', 'Category Edited Successfully!');
+    }
+
 }

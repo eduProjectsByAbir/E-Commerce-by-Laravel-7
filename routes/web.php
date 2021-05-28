@@ -18,4 +18,6 @@ Route::get('admin/logout','Admin\LoginController@logout')->name('admin.logout');
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
     Route::get('/categories','Admin\CategoryController@index')->name('category');
     Route::post('/categories/add','Admin\CategoryController@store')->name('add.category');
+    Route::get('/categories/edit/{id}','Admin\CategoryController@edit')->name('edit.category');
+    Route::post('/categories/edit/{id}','Admin\CategoryController@update')->name('update.category');
 });
