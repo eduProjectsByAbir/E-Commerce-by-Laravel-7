@@ -395,6 +395,32 @@
 
         });
       </script>
+           <script type="text/javascript">
+            $(function (){
+                $(document).on('click', '#delete', function (e){
+                    e.preventDefault();
+                    var link = $(this).attr("href");
+                     Swal.fire({
+                         title: 'Are you sure?',
+                         text: "You won't be able to revart this!",
+                         icon: 'warning',
+                         showCancelButton: true,
+                         confirmButtonColor: '#3085d6',
+                         cancelButtonColor: '#d33',
+                         confirmButtonText: 'Yes, Delete it!'
+                     }).then((result)=> {
+                         if (result.value){
+                             window.location.href = link;
+                             Swal.fire(
+                                 'Deleted!',
+                                 'Your data has been Deleted!',
+                                 'success'
+                             )
+                         }
+                     })
+                });
+            });
+        </script>
     <script src="{{ asset('backend')}}/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
     <script src="{{ asset('backend')}}/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
     <script src="{{ asset('backend')}}/lib/d3/d3.js"></script>
@@ -413,6 +439,8 @@
     <script src="{{ asset('backend')}}/js/ResizeSensor.js"></script>
     <script src="{{ asset('backend')}}/js/dashboard.js"></script>
     <script src="{{ asset('backend')}}/lib/toastr/toastr.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
       <script>
         @if(Session::has('success'))
@@ -477,5 +505,6 @@
             @endforeach
     @endif
       </script>
+
   </body>
 </html>

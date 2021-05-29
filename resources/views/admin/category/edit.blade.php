@@ -18,6 +18,7 @@
                     <div class="card-body">
                         <form action="{{ Route('admin.update.category', $category->id) }}" method="POST">
                             @csrf
+                            <input type="hidden" name="_method" value="PUT" />
                             <div class="form-group">
                             <label for="name">Category Name</label>
                             <input type="text" name="category_name" id="name" value="{{$category->category_name}}" class="form-control @error('category_name') is-invalid @enderror" required>

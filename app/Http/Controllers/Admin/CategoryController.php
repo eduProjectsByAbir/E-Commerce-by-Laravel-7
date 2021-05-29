@@ -32,12 +32,21 @@ class CategoryController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'category_name' => 'required|unique:categories,category_name'
+        ]);
+
         $category = Category::find($id);
         $category->category_name = $request->category_name;
         $category->save();
 
-        $categories = Category::latest()->get();
-        return view('admin.category.index', compact('categories'))->with('success', 'Category Edited Successfully!');
+        return redirect()->route('admin.category')->with('success', 'Category Edited Successfully!');
+    }
+
+    public function delete($id){
+        Category::findOrFail($id)->delete();
+
+        return redirect()->route('admin.category')->with('success', 'Category Deleted Successfully!');
     }
 
 }
