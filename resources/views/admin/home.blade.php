@@ -1,5 +1,6 @@
 @extends('admin.master')
 
+@section('dashboard') active @endsection
 @section('content')
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">

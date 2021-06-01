@@ -16,9 +16,18 @@ Route::get('admin/logout','Admin\LoginController@logout')->name('admin.logout');
 // ============================ Admin Route =========================
 
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
+    // =========================== Category Routes
     Route::get('/categories','Admin\CategoryController@index')->name('category');
     Route::post('/categories/add','Admin\CategoryController@store')->name('add.category');
     Route::get('/categories/edit/{id}','Admin\CategoryController@edit')->name('edit.category');
     Route::put('/categories/update/{id}','Admin\CategoryController@update')->name('update.category');
     Route::get('/categories/delete/{id}','Admin\CategoryController@delete')->name('delete.category');
+
+    // =========================== Brand Routes
+    Route::get('/brands','Admin\BrandController@index')->name('brand');
+    Route::post('/brands/add','Admin\BrandController@store')->name('add.brand');
+    Route::get('/brands/edit/{id}','Admin\BrandController@edit')->name('edit.brand');
+    Route::put('/brand/update/{id}','Admin\BrandController@update')->name('update.brand');
+    Route::get('/brand/delete/{id}','Admin\BrandController@destroy')->name('delete.brand');
+
 });
