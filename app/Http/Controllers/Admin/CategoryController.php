@@ -33,12 +33,12 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id){
         $request->validate([
-            'category_name' => 'required|unique:categories,category_name'
+            'category_name' => 'required|unique:categories,category_name',
+            'category_name' => 'required'
         ]);
 
-        $category = Category::find($id);
-        $category->category_name = $request->category_name;
-        $category->save();
+        Category::find($id)
+        ->update(['category_name' => $request->category_name, 'status' => $request->status]);
 
         return redirect()->route('admin.category')->with('success', 'Category Edited Successfully!');
     }
