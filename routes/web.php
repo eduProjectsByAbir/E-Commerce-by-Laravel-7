@@ -30,4 +30,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::put('/brand/update/{id}','Admin\BrandController@update')->name('update.brand');
     Route::get('/brand/delete/{id}','Admin\BrandController@destroy')->name('delete.brand');
 
+    // =========================== Product Routes
+    Route::get('/products/create','Admin\ProductController@create')->name('create.product');
+
 });
