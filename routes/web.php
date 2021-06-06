@@ -32,5 +32,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
 
     // =========================== Product Routes
     Route::get('/products/create','Admin\ProductController@create')->name('create.product');
+    Route::post('/products/add','Admin\ProductController@store')->name('add.product');
 
 });

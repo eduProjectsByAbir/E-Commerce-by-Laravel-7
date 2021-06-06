@@ -11,7 +11,7 @@
         <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">Add Product</h6>
             <p class="mg-b-20 mg-sm-b-30"></p>
-            <form action="" method="post" enctype="multipart/form-data"> @csrf
+            <form action="{{ route('admin.add.product') }}" method="post" enctype="multipart/form-data"> @csrf
             <div class="form-layout">
                 <div class="row mg-b-25">
                     <div class="col-lg-4">
@@ -53,7 +53,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Product Status: <span class="tx-danger">*</span></label>
-                            <select class="form-control" data-placeholder="Choose Status">
+                            <select class="form-control" name="status" data-placeholder="Choose Status">
                                 <option label="Choose status"></option>
                                 <option value="USA">Approved</option>
                                 <option value="USA">Pending</option>
@@ -85,15 +85,15 @@
                     <div class="col-sm-8 mg-t-10 mg-sm-t-0">
                         <label class="form-control-label">Enter Description: <span class="tx-danger">*</span></label>
                         <div class="form-group mg-b-10-force">
-                            <textarea rows="7" class="form-control summernote" placeholder="Enter your address"></textarea>
+                            <textarea rows="7" name="long_discription" class="form-control summernote" placeholder="Enter your address"></textarea>
                         </div>
                     </div><!-- col-8 -->
                     <div class="col-lg-4">
                         <div class="form-group mg-b-10-force">
                             <label class="form-control-label">Select Thumbnails: <span class="tx-danger">*</span></label>
-                            <input type="file" class="form-control" name="image_one" placeholder="Select Image">
-                            <input type="file" class="form-control" name="image_two" placeholder="Select Image">
-                            <input type="file" class="form-control" name="image_three" placeholder="Select Image">
+                            <input type="file" class="form-control" id="product_image" name="image_one">
+                            <input type="file" class="form-control" name="image_two">
+                            <input type="file" class="form-control" name="image_three">
                         </div>
                     </div><!-- col-4 -->
                 </div><!-- row -->
