@@ -60,21 +60,24 @@ class ProductController extends Controller
             'status.required' => 'Select status...'
         ]);
 
-        $image_one = $request->file('image_one');
-        $name_gen = hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
-        Image::make($image_one)->resize(300,400)->save('fontend/img/product/'.$name_gen);
-        $img_url1 = 'fontend/img/product/'.$name_gen;
-
-        $image_two = $request->file('image_two');
-        $name_gen = hexdec(uniqid()).'.'.$image_two->getClientOriginalExtension();
-        Image::make($image_two)->resize(300,400)->save('fontend/img/product/'.$name_gen);
-        $img_url2 = 'fontend/img/product/'.$name_gen;
-
-        $image_three = $request->file('image_three');
-        $name_gen = hexdec(uniqid()).'.'.$image_three->getClientOriginalExtension();
-        Image::make($image_three)->resize(300,400)->save('fontend/img/product/'.$name_gen);
-        $img_url3 = 'fontend/img/product/'.$name_gen;
-
+        if(!empty($request->file('image_one'))){
+            $image_one = $request->file('image_one');
+            $name_gen = hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
+            Image::make($image_one)->resize(300,400)->save('fontend/img/product/'.$name_gen);
+            $img_url1 = 'fontend/img/product/'.$name_gen;
+        }
+        if(!empty($request->file('image_two'))){
+            $image_two = $request->file('image_two');
+            $name_gen = hexdec(uniqid()).'.'.$image_two->getClientOriginalExtension();
+            Image::make($image_two)->resize(300,400)->save('fontend/img/product/'.$name_gen);
+            $img_url2 = 'fontend/img/product/'.$name_gen;
+        }
+        if(!empty($request->file('image_three'))){
+            $image_three = $request->file('image_three');
+            $name_gen = hexdec(uniqid()).'.'.$image_three->getClientOriginalExtension();
+            Image::make($image_three)->resize(300,400)->save('fontend/img/product/'.$name_gen);
+            $img_url3 = 'fontend/img/product/'.$name_gen;
+        }
     }
 
     /**
