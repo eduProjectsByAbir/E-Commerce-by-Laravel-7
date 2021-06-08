@@ -55,8 +55,8 @@
                             <label class="form-control-label">Product Status: <span class="tx-danger">*</span></label>
                             <select class="form-control" name="status" data-placeholder="Choose Status">
                                 <option label="Choose status"></option>
-                                <option value="USA">Approved</option>
-                                <option value="USA">Pending</option>
+                                <option value="1">Approved</option>
+                                <option value="0">Pending</option>
                             </select>
                         </div>
                     </div><!-- col-4 -->

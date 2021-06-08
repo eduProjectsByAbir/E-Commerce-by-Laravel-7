@@ -7,6 +7,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
@@ -63,21 +64,40 @@ class ProductController extends Controller
         if(!empty($request->file('image_one'))){
             $image_one = $request->file('image_one');
             $name_gen = hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
-            Image::make($image_one)->resize(300,400)->save('fontend/img/product/'.$name_gen);
+            Image::make($image_one)->resize(270,270)->save('fontend/img/product/'.$name_gen);
             $img_url1 = 'fontend/img/product/'.$name_gen;
         }
         if(!empty($request->file('image_two'))){
             $image_two = $request->file('image_two');
             $name_gen = hexdec(uniqid()).'.'.$image_two->getClientOriginalExtension();
-            Image::make($image_two)->resize(300,400)->save('fontend/img/product/'.$name_gen);
+            Image::make($image_two)->resize(270,270)->save('fontend/img/product/'.$name_gen);
             $img_url2 = 'fontend/img/product/'.$name_gen;
         }
         if(!empty($request->file('image_three'))){
             $image_three = $request->file('image_three');
             $name_gen = hexdec(uniqid()).'.'.$image_three->getClientOriginalExtension();
-            Image::make($image_three)->resize(300,400)->save('fontend/img/product/'.$name_gen);
+            Image::make($image_three)->resize(270,270)->save('fontend/img/product/'.$name_gen);
             $img_url3 = 'fontend/img/product/'.$name_gen;
         }
+
+        Product::insert([
+            'category_id' => $request->category_id,
+            'brand_id' => $request->brand_id,
+            'name' => $request->name,
+            'slug' => str_replace(' ', '-', $request->name),
+            'code' => $request->code,
+            'quantity' => $request->quantity,
+            'short_discription' => $request->short_discription,
+            'long_discription' => $request->long_discription,
+            'price' => $request->price,
+            'image_one' => $img_url1,
+            'image_two' => $img_url2,
+            'image_three' => $img_url3,
+            'status' => $request->status,
+            'created_at' => Carbon::now()
+        ]);
+
+        return redirect()->back()->with('success', 'Product Added Successfully!');
     }
 
     /**
