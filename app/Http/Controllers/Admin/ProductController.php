@@ -19,7 +19,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::latest()->get();
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -80,24 +81,48 @@ class ProductController extends Controller
             $img_url3 = 'fontend/img/product/'.$name_gen;
         }
 
-        Product::insert([
-            'category_id' => $request->category_id,
-            'brand_id' => $request->brand_id,
-            'name' => $request->name,
-            'slug' => str_replace(' ', '-', $request->name),
-            'code' => $request->code,
-            'quantity' => $request->quantity,
-            'short_discription' => $request->short_discription,
-            'long_discription' => $request->long_discription,
-            'price' => $request->price,
-            'image_one' => $img_url1,
-            'image_two' => $img_url2,
-            'image_three' => $img_url3,
-            'status' => $request->status,
-            'created_at' => Carbon::now()
-        ]);
+        $product = new Product();
+        $product->category_id = $request->category_id;
+        $product->brand_id = $request->brand_id;
+        $product->name = $request->name;
+        $product->slug = str_replace(' ', '-', $request->name);
+        $product->code = $request->code;
+        $product->quantity = $request->quantity;
+        $product->short_discription = $request->short_discription;
+        $product->long_discription = $request->long_discription;
+        $product->price = $request->price;
 
-        return redirect()->back()->with('success', 'Product Added Successfully!');
+        if(!empty($request->file('image_one'))){
+            $product->image_one = $img_url1;
+        }
+        if(!empty($request->file('image_two'))){
+            $product->image_two = $img_url2;
+        }
+        if(!empty($request->file('image_three'))){
+            $product->image_three = $img_url3;
+        }
+        $product->status = $request->status;
+        $product->created_at = Carbon::now();
+        $product->save();
+
+        // Product::insert([
+        //     'category_id' => $request->category_id,
+        //     'brand_id' => $request->brand_id,
+        //     'name' => $request->name,
+        //     'slug' => str_replace(' ', '-', $request->name),
+        //     'code' => $request->code,
+        //     'quantity' => $request->quantity,
+        //     'short_discription' => $request->short_discription,
+        //     'long_discription' => $request->long_discription,
+        //     'price' => $request->price,
+        //     'image_one' => $img_url1,
+        //     'image_two' => $img_url2,
+        //     'image_three' => $img_url3,
+        //     'status' => $request->status,
+        //     'created_at' => Carbon::now()
+        // ]);
+
+        return redirect()->route('admin.view.product')->with('success', 'Product Added Successfully!');
     }
 
     /**
