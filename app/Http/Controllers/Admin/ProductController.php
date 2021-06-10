@@ -94,12 +94,15 @@ class ProductController extends Controller
         $product->price = $request->price;
 
         if(!empty($request->file('image_one'))){
+
             $product->image_one = $img_url1;
         }
         if(!empty($request->file('image_two'))){
+
             $product->image_two = $img_url2;
         }
         if(!empty($request->file('image_three'))){
+
             $product->image_three = $img_url3;
         }
         $product->status = $request->status;
@@ -193,12 +196,21 @@ class ProductController extends Controller
         $product->price = $request->price;
 
         if(!empty($request->file('image_one'))){
+            if (File::exists($product->image_one)) {
+                unlink($product->image_one);
+            }
             $product->image_one = $img_url1;
         }
         if(!empty($request->file('image_two'))){
+            if (File::exists($product->image_two)) {
+                unlink($product->image_two);
+            }
             $product->image_two = $img_url2;
         }
         if(!empty($request->file('image_three'))){
+            if (File::exists($product->image_three)) {
+                unlink($product->image_three);
+            }
             $product->image_three = $img_url3;
         }
 
