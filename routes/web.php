@@ -39,4 +39,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::put('/products/update/{id}','Admin\ProductController@update')->name('update.product');
 
     Route::get('/products/delete/{id}','Admin\ProductController@destroy')->name('delete.product');
+
+    // ======================== Coupon Routes ===================
+    Route::get('/coupons','Admin\CouponController@index')->name('coupons');
+    Route::post('/coupons/add','Admin\CouponController@store')->name('add.coupons');
+    Route::get('/coupons/edit/{id}','Admin\CouponController@edit')->name('edit.coupon');
+    Route::put('/coupons/update/{id}','Admin\CouponController@update')->name('update.coupon');
+    Route::get('/coupons/delete/{id}','Admin\CouponController@destroy')->name('delete.coupon');
 });

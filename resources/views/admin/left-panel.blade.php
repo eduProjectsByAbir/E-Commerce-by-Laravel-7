@@ -46,6 +46,12 @@
         <li class="nav-item"><a href="{{ Route('admin.create.product') }}" class="nav-link @yield('product')">Add Product</a></li>
         <li class="nav-item"><a href="{{ Route('admin.view.product') }}" class="nav-link @yield('products')">Manage Product</a></li>
       </ul>
+      <a href="{{ Route('admin.coupons') }}" class="sl-menu-link @yield('coupon')">
+        <div class="sl-menu-item">
+          <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+          <span class="menu-item-label">Coupon</span>
+        </div><!-- menu-item -->
+      </a><!-- sl-menu-link -->
     </div><!-- sl-sideleft-menu -->
 
     <br>
